@@ -1,23 +1,19 @@
 # File: Load CSV Example
 # ----------------------
-# This is some sample code. Use it in any way 
-# that you would like. It is meant to both give
-# you a head start on the assignments and show you
-# what some python code looks like :-). - Piech.
 
 # A useful library for reading files
 # with "comma seperated values".
 import csv
+import argparse
 
 # The main method
-def main():
-	split_patents('cases-2019-01-24PST17-50-37.csv')
 
 
 def split_patents(filename):
 	x = 0
+	file_tag = filename[5:]
 	# open a file
-	with open('patents.csv','w') as csvfile:
+	with open('patents' + file_tag + '.csv','w') as csvfile:
 		with open(filename) as f:
 			reader = csv.reader(f)
 			# loop over each row in the file
@@ -51,4 +47,8 @@ def printData(matrix):
 # This if statement passes if this
 # was the file that was executed
 if __name__ == '__main__':
-	main()
+	parser = argparse.ArgumentParser(description="Take in list of cases and split them up where a patent is on every row.")
+	parser.add_argument('-filename',metavar="filename",help="Filename for lines of cases")
+	args = parser.parse_args()
+	filename = args.filename
+	split_patents(filename)
