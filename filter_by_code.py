@@ -1,12 +1,4 @@
-# File: Load CSV Example
-# ----------------------
-# This is some sample code. Use it in any way 
-# that you would like. It is meant to both give
-# you a head start on the assignments and show you
-# what some python code looks like :-). - Piech.
 
-# A useful library for reading files
-# with "comma seperated values".
 import csv
 import argparse
 

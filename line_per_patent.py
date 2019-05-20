@@ -19,17 +19,18 @@ def split_patents(filename):
 			# loop over each row in the file
 			for row in reader:
 				if x != 0:
-					patents = row[9]
-					patent_list = patents.split(";")
-					for patent_number in patent_list:
-						writeRow = row[:]
-						writeRow[9] = patent_number 
-						for i in range(len(writeRow)):
-							writeRow[i] = writeRow[i].replace('"','')
-							writeRow[i] = writeRow[i].replace("'","")
-							writeRow[i] = "\"" + writeRow[i] + "\""
-						writeRow = ','.join(writeRow) + '\n'
-						csvfile.write(writeRow)
+					patents = row[7]
+					if patents.strip() != "":
+						patent_list = patents.split(";")
+						for patent_number in patent_list:
+							writeRow = row[:]
+							writeRow[7] = patent_number.strip() 
+							for i in range(len(writeRow)):
+								writeRow[i] = writeRow[i].replace('"','')
+								writeRow[i] = writeRow[i].replace("'","")
+								writeRow[i] = "\"" + writeRow[i] + "\""
+							writeRow = ','.join(writeRow) + '\n'
+							csvfile.write(writeRow)
 				else:
 					for j in range(len(row)):
 						row[j] = "\"" + row[j] + "\""
