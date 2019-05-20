@@ -7,6 +7,20 @@ A repository for ongoing projects related to and scripts that work with the Stan
 
 My idea is to use the Stanford NPE database's list of 1's and 5's and cross reference that with Google's BigQuery Patent database. I hope to look at the art unit classifcations of the patents that PAE's are litigating from year to year and determine in which technological sector the bulk of malicious litigation is occurring. This could be a good jumping off point for examining relevant legislation, policies, or approaches to approving these patents and in turn suggesting future work.
 
+
+## Patent Data Collection Overview
+
+If you want to collect data using BigQuery, there are a few things you need to do.
+
+First, download the source data from the https://npe.law.stanford.edu site after logging in with your user. Then, run the line_per_patent.py script on that file as described in the "Script Overview" section. Afterwards, you will have a csv that has one line per patent. 
+
+Google has limits on how much data you're allowed to upload into a table in BigQuery from your machine, so you have two options at this stage. You can run ftuure queries on the entire dataset by uploading the generated file to Google Cloud Storage, or you can first trim the data to make it small enough to allow a local upload. One way to trim the data is to filter it by asserter code using filter_by_code.py.
+
+No matter which you choose, you'll need a free account and a project created on BigQuery. You can select your project, create a dataset, and then within that dataset, select create table. It will then prompt you for where to look for the file you want to use to populate that data. Select either Google Cloud Storage or a local file on your machine depending on which option you chose before. 
+
+You can then run SQL Queries on that data, and whichever datasets that BigQuery has that you want to reference.
+
+
 ## Script Overview
 
 The below scripts were all written in Python 2.7. When run for the first time you might need to install relevant libraries, or even Python itself. 
