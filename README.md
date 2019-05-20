@@ -34,6 +34,8 @@ pip install MISSING LIBRARY
 
 This script takes in the cases csv downloaded at https://npe.law.stanford.edu, with one line per case, and creates a csv that contains one line for every patent. It assumes you haven't changed the name of the cases file from the default, as it writes a new csv with the same datestamp, so you can be certain which file corresponds to which source data. 
 
+If the source data has been changed (ie, the patents column in the cases file is no longer in the same place because columns have been removed or added) then this file will need to be edited.
+
 You call it in Mac or Ubuntu as follows:
 
 ***
