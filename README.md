@@ -14,9 +14,9 @@ If you want to collect data using BigQuery, there are a few things you need to d
 
 First, download the source data from the https://npe.law.stanford.edu site after logging in with your user. Then, run the line_per_patent.py script on that file as described in the "Script Overview" section. Afterwards, you will have a csv that has one line per patent. 
 
-Google has limits on how much data you're allowed to upload into a table in BigQuery from your machine, so you have two options at this stage. You can run ftuure queries on the entire dataset by uploading the generated file to Google Cloud Storage, or you can first trim the data to make it small enough to allow a local upload. One way to trim the data is to filter it by asserter code using filter_by_code.py.
+Google has limits on how much data you're allowed to upload into a table in BigQuery from your machine, so you have two options at this stage. You can run future queries on the entire dataset by uploading the generated file to Google Cloud Storage, or you can first trim the data to make it small enough to allow a local upload. One way to trim the data is to filter it by asserter code using filter_by_code.py.
 
-No matter which you choose, you'll need a free account and a project created on BigQuery. You can select your project, create a dataset, and then within that dataset, select create table. It will then prompt you for where to look for the file you want to use to populate that data. Select either Google Cloud Storage or a local file on your machine depending on which option you chose before. 
+No matter which you choose, you'll need a free account and a project created on BigQuery. You can select your project, create a dataset, and then within that dataset, select create table. It will then prompt you for where to look for the file you want to use to populate that table. Select either Google Cloud Storage or a local file on your machine depending on which option you chose before. 
 
 You can then run SQL Queries on that data, and whichever datasets that BigQuery has that you want to reference.
 
