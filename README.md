@@ -20,6 +20,8 @@ No matter which you choose, you'll need a free account and a project created on 
 
 You can then run SQL Queries on that data, and whichever datasets that BigQuery has that you want to reference.
 
+Reference the pto-PEDS_sample_query.sql file for an example on how this can be done once you've set up your own BigQuery account and project. More details are provided within the file, and below.
+
 
 ## Script Overview
 
@@ -80,9 +82,13 @@ And in windows like below:
 filter_by_code.py -filename PATENTS_FILE_NAME_HERE -codes CODE NUMBERS HERE
 ***
 
+### pto-PEDS_sample_query.sql
+
+This file contains a query I used to collect the art unit, national classifications, and business categories for each litigated patent in our database. Copy the code inside into the query editor in BigQuery, making edits to names and fields as necessary to match your project's name, and to match exactly what fields and databsases you are trying to examine.
+
 ### patent_lookup.py
 
-Potential Issues: The external API is buggy so I'll be taking a different approach from here on out. 
+Potential Issues: The external API is buggy so I'll be taking a different approach from here on out. This script is no longer in usage, and should not be referenced for, well, anything.
 
 This script interfaces with the PatentView API at http://www.patentsview.org/api/patent.html. It looks up patents from a csv file that contains one line for every patent (created by line_per_patent.py). You can provide additional fields to lookup described in the above link using the -f argument. By default, it searches for ICP section and group.
 
