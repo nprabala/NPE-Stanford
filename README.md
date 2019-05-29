@@ -3,7 +3,11 @@ A repository for ongoing projects related to and scripts that work with the Stan
 
 ## Projects
 
-### Art Units of Patent Trolls' IP Over Time -- Nikhil Prabala
+
+
+### Send in your names, current project titles and descriptions so I can add them here!
+
+### Example: Art Units of Patent Trolls' IP Over Time -- Nikhil Prabala
 
 My idea is to use the Stanford NPE database's list of 1's and 5's and cross reference that with Google's BigQuery Patent database. I hope to look at the art unit classifcations of the patents that PAE's are litigating from year to year and determine in which technological sector the bulk of malicious litigation is occurring. This could be a good jumping off point for examining relevant legislation, policies, or approaches to approving these patents and in turn suggesting future work.
 
