@@ -65,13 +65,13 @@ line_per_entry.py -filename CASES_FILE_NAME_HERE -columnnumber RELEVANT_COLUMN_I
 
 ### filter_by_code.py
 
-This script takes in the file output from line_per_patent.py, along with a list of codes you want to filter by, and returns a csv file that has only patents with asserters that belong in that list of codes. I used this script to filter down a list of patents for upload into Google's BigQuery so I could compare them to their existing patent dataset.
+This script takes in the file output from line_per_entry.py, along with a list of codes you want to filter by, and returns a csv file that has only patents with asserters that belong in that list of codes. I used this script to filter down a list of patents for local upload into Google's BigQuery so I could compare them to their existing patent dataset.
 
 
 You call it in Mac or Ubuntu as follows:
 
 ***
-python filter_by_code.py -filename PATENTS_NAME_HERE -codes CODE NUMBERS HERE
+python filter_by_code.py -filename FILE_NAME_HERE -codes CODE NUMBERS HERE
 ***
 
 And in windows like below:
