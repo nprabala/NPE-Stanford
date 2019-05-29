@@ -30,6 +30,7 @@ def split_fields(filename, columnnumber, delimiter):
 								writeRow[i] = "\"" + writeRow[i] + "\""
 							writeRow = ','.join(writeRow) + '\n'
 							csvfile.write(writeRow)
+							x += 1
 				else:
 					print("Splitting up " + row[columnnumber])
 					for j in range(len(row)):
