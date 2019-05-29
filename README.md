@@ -12,7 +12,7 @@ My idea is to use the Stanford NPE database's list of 1's and 5's and cross refe
 
 If you want to collect data using BigQuery, there are a few things you need to do.
 
-First, download the source data from the https://npe.law.stanford.edu site after logging in with your user. Then, run the line_per_patent.py script on that file as described in the "Script Overview" section. Afterwards, you will have a csv that has one line per patent. 
+First, download the source data from the https://npe.law.stanford.edu site after logging in with your user. Then, run the line_per_entry.py script on that file as described in the "Script Overview" section. Afterwards, you will have a csv that has one line for each entry of your field of interest (patents, patent_asserters, and so on), as there can be multiple entries of a particular column in one line.
 
 Google has limits on how much data you're allowed to upload into a table in BigQuery from your machine, so you have two options at this stage. You can run future queries on the entire dataset by uploading the generated file to Google Cloud Storage, or you can first trim the data to make it small enough to allow a local upload. One way to trim the data is to filter it by asserter code using filter_by_code.py.
 
@@ -20,7 +20,7 @@ No matter which you choose, you'll need a free account and a project created on 
 
 You can then run SQL Queries on that data, and whichever datasets that BigQuery has that you want to reference.
 
-Reference the pto-PEDS_sample_query.sql file for an example on how this can be done once you've set up your own BigQuery account and project. More details are provided within the file, and below.
+Reference the pto-PEDS_sample_query.sql file as an example on how this can be done once you've set up your own BigQuery account and project. More details are provided within the file, and below.
 
 
 ## Script Overview
@@ -46,22 +46,20 @@ pip install MISSING LIBRARY
 ***
 
 
-### line_per_patent.py
+### line_per_entry.py
 
-This script takes in the cases csv downloaded at https://npe.law.stanford.edu, with one line per case, and creates a csv that contains one line for every patent. It assumes you haven't changed the name of the cases file from the default, as it writes a new csv with the same datestamp, so you can be certain which file corresponds to which source data. 
-
-If the source data has been changed (ie, the patents column in the cases file is no longer in the same place because columns have been removed or added) then this file will need to be edited.
+This script takes in the cases csv downloaded at https://npe.law.stanford.edu, with one line per case, and creates a csv that contains one line for every entry in a particular column (ie, if there are multiple patents for a given case, there will be one line for each patent). You must provide the script with the filename, the number of the column you want to split the data on, and the character the divides multiple entries from one another, typically a ; in our data. 
 
 You call it in Mac or Ubuntu as follows:
 
 ***
-python line_per_patent.py -filename CASES_FILE_NAME_HERE
+python line_per_entry.py -filename CASES_FILE_NAME -columnnumber RELEVANT_COLUMN_INDEX -delimiter CHAR_THAT_SEPARATES_ENTRIES
 ***
 
 And in windows like below:
 
 ***
-line_per_patent.py -filename CASES_FILE_NAME_HERE
+line_per_entry.py -filename CASES_FILE_NAME_HERE -columnnumber RELEVANT_COLUMN_INDEX -delimiter CHAR_THAT_SEPARATES_ENTRIES
 ***
 
 
@@ -85,13 +83,4 @@ filter_by_code.py -filename PATENTS_FILE_NAME_HERE -codes CODE NUMBERS HERE
 ### pto-PEDS_sample_query.sql
 
 This file contains a query I used to collect the art unit, national classifications, and business categories for each litigated patent in our database. Copy the code inside into the query editor in BigQuery, making edits to names and fields as necessary to match your project's name, and to match exactly what fields and databsases you are trying to examine.
-
-### patent_lookup.py
-
-Potential Issues: The external API is buggy so I'll be taking a different approach from here on out. This script is no longer in usage, and should not be referenced for, well, anything.
-
-This script interfaces with the PatentView API at http://www.patentsview.org/api/patent.html. It looks up patents from a csv file that contains one line for every patent (created by line_per_patent.py). You can provide additional fields to lookup described in the above link using the -f argument. By default, it searches for ICP section and group.
-
-
-
 
